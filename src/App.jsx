@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar'
 import { Home } from './components/Home'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
+import { WeatherCard } from './components/WeatherCard'
 
 function App() {
 
@@ -33,6 +34,16 @@ function App() {
               <Register/>
             </>
           }>
+          </Route>
+
+          {/* test route for widgets */}
+          <Route path="test" element={
+            <>
+              <Navbar/>
+              <WeatherCard/>
+            </>
+          }>
+
           </Route>
       
         </Routes>
