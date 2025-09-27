@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import supabase from "../helper/supabaseClient";
 import { useDropzone } from 'react-dropzone'
-import dropdown from '../assets/dropdown.png'
 
 export const Upload = ({trigger, onClose, onDone}) => {
     const [files, setFiles] = useState([])
