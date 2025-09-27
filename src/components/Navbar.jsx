@@ -3,7 +3,9 @@ import { Link } from "react-router-dom"
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import supabase from "../helper/supabaseClient";
-// import { Upload } from "./Upload";
+import { Upload } from "./Upload";
+import umbrella from "../assets/umbrella.svg";
+
 // import logo from "../assets/logo.png";
 
 export const Navbar = () => {
@@ -33,9 +35,10 @@ export const Navbar = () => {
   
         <Link to="/" className="text-xl text-black flex gap-5">
         {/* <img className="h-15 w-15" src={logo}/> */}
+        <img src={umbrella} className="w-10 h-10"/>
         <div className="flex-1">
-        <p className="font-extrabold text-black">
-            WEAR<span className="font-bold text-black">ther</span>
+        <p className="font-extrabold text-3xl text-white">
+            WEAR<span className="font-bold text-white text-3xl">ther</span>
         </p>
      
         </div>
@@ -49,37 +52,30 @@ export const Navbar = () => {
 
 {(
               <li>
-                <Link to="/about" className=" px-5 py-2 text-xl font-semibold">
+                <Link to="/about" className=" px-5 py-2 text-xl font-semibold text-white">
                   about
                 </Link>
               </li>
           )}
           {(
               <li>
-                <Link to="/upload">
-                <p className=" cursor-pointer px-5 py-2 text-xl font-semibold" onClick={() => setForm(true)}>upload clothing</p>
-                </Link>
+                <button onClick={() => setForm(true)}>
+                    <p className="cursor-pointer px-5 py-2 text-xl font-semibold text-white">upload clothing</p>
+                </button>
               </li>
           )}
           
-          {(
-              <li>
-                <Link to="/add" className=" px-5 py-2 text-xl font-semibold">
-                  add a new location
-                </Link>
-              </li>
-          )}
 
           {!authenticated ? (
             <>
             <li>
-            <Link to="/login" className="bg-[#F1CCCC] rounded-[10px] px-5 py-2 text-xl font-semibold">
+            <Link to="/login" className="bg-[#E2EBF4] rounded-[10px] px-5 py-2 text-xl font-semibold">
               login
             </Link>
           </li>
 
           <li>
-            <Link to="/register" className="bg-[#FADEDA] rounded-[10px] px-5 py-2 text-xl font-semibold">
+            <Link to="/register" className="bg-[#E2EBF4] rounded-[10px] px-5 py-2 text-xl font-semibold">
               sign up
             </Link>
           </li>
@@ -96,7 +92,7 @@ export const Navbar = () => {
         </ul>
 
         {/* upload clothing pop up */}
-        {/* <Upload trigger={form} onClose={() => setShow(false)} onDone={() => setShow(false)} /> */}
+      <Upload trigger={form} onClose={() => setShow(false)} onDone={() => setShow(false)} /> 
 
         {/* mobile menu button */}
         <div className="md:hidden">
@@ -147,6 +143,9 @@ export const Navbar = () => {
           )}
         </ul>
       )}
+
+      {/* upload clothing pop up */}
+      <Upload trigger={form} onClose={() => setForm(false)} onDone={() => setForm(false)} />
 
 
     </section>
