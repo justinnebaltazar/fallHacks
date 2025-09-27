@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom"
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import supabase from "../helper/supabaseClient";
@@ -46,15 +46,25 @@ export const Navbar = () => {
         {/* desktop menu */}
 
         <ul className="hidden md:flex items-center gap-4">
+
+{(
+              <li>
+                <Link to="/about" className=" px-5 py-2 text-xl font-semibold">
+                  about
+                </Link>
+              </li>
+          )}
           {(
               <li>
+                <Link to="/upload">
                 <p className=" cursor-pointer px-5 py-2 text-xl font-semibold" onClick={() => setForm(true)}>upload clothing</p>
+                </Link>
               </li>
           )}
           
           {(
               <li>
-                <Link to="add" className=" px-5 py-2 text-xl font-semibold">
+                <Link to="/add" className=" px-5 py-2 text-xl font-semibold">
                   add a new location
                 </Link>
               </li>

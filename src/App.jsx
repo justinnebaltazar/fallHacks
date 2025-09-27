@@ -5,6 +5,8 @@ import { Home } from './components/Home'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
 import { WeatherCard } from './components/WeatherCard'
+import { About } from './components/About'
+
 
 function App() {
 
@@ -17,6 +19,13 @@ function App() {
             <>
               <Navbar/>
               <Home/>
+            </>
+          }>
+          </Route>
+          {/* about page */}
+          <Route path="/about" element={
+            <>
+              <About/>
             </>
           }>
           </Route>
