@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import supabase from "../helper/supabaseClient";
-import { Upload } from "./Upload";
+// import { Upload } from "./Upload";
 // import logo from "../assets/logo.png";
 
 export const Navbar = () => {
@@ -34,10 +34,10 @@ export const Navbar = () => {
         <Link to="/" className="text-xl text-black flex gap-5">
         {/* <img className="h-15 w-15" src={logo}/> */}
         <div className="flex-1">
-        <p className="font-semibold text-[#37532B]">
-            Find Your
+        <p className="font-extrabold text-black">
+            WEAR<span className="font-bold text-black">ther</span>
         </p>
-        <p className="font-bold text-black">Matcha</p>
+     
         </div>
 
         </Link>
@@ -54,7 +54,7 @@ export const Navbar = () => {
           
           {(
               <li>
-                <Link to="/add" className=" px-5 py-2 text-xl font-semibold">
+                <Link to="add" className=" px-5 py-2 text-xl font-semibold">
                   add a new location
                 </Link>
               </li>
@@ -86,7 +86,7 @@ export const Navbar = () => {
         </ul>
 
         {/* upload clothing pop up */}
-        <Upload trigger={form} onClose={() => setShow(false)} onDone={() => setShow(false)} />
+        {/* <Upload trigger={form} onClose={() => setShow(false)} onDone={() => setShow(false)} /> */}
 
         {/* mobile menu button */}
         <div className="md:hidden">
