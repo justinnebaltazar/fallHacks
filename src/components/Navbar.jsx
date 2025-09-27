@@ -4,7 +4,7 @@ import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 import supabase from "../helper/supabaseClient";
-import logo from "../assets/logo.png";
+// import logo from "../assets/logo.png";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,7 +31,7 @@ export const Navbar = () => {
       <div className="flex flex-wrap items-center justify-between mx-auto p-4">
   
         <Link to="/" className="text-xl text-black flex gap-5">
-        <img className="h-15 w-15" src={logo}/>
+        {/* <img className="h-15 w-15" src={logo}/> */}
         <div className="flex-1">
         <p className="font-semibold text-[#37532B]">
             Find Your
