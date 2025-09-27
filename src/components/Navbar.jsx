@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import { useState } from "react";
 import supabase from "../helper/supabaseClient";
+import { Upload } from "./Upload";
 // import logo from "../assets/logo.png";
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
+  const [form, setForm] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -47,9 +48,7 @@ export const Navbar = () => {
         <ul className="hidden md:flex items-center gap-4">
           {(
               <li>
-                <Link to="/review" className=" px-5 py-2 text-xl font-semibold">
-                  write a review
-                </Link>
+                <p className=" cursor-pointer px-5 py-2 text-xl font-semibold" onClick={() => setForm(true)}>upload clothing</p>
               </li>
           )}
           
@@ -85,6 +84,10 @@ export const Navbar = () => {
           )}
 
         </ul>
+
+        {/* upload clothing pop up */}
+        <Upload trigger={form} onClose={() => setShow(false)} onDone={() => setShow(false)} />
+
         {/* mobile menu button */}
         <div className="md:hidden">
 
