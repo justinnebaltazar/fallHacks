@@ -19,12 +19,6 @@ function App() {
             <>
               <Navbar/>
               <Home/>
-            </>
-          }>
-          </Route>
-          {/* about page */}
-          <Route path="/about" element={
-            <>
               <About/>
             </>
           }>
