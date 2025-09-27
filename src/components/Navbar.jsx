@@ -4,6 +4,8 @@ import { HiMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import supabase from "../helper/supabaseClient";
 import { Upload } from "./Upload";
+import umbrella from "../assets/umbrella.svg";
+
 // import logo from "../assets/logo.png";
 
 export const Navbar = () => {
@@ -33,6 +35,7 @@ export const Navbar = () => {
   
         <Link to="/" className="text-xl text-black flex gap-5">
         {/* <img className="h-15 w-15" src={logo}/> */}
+        <img src={umbrella} className="w-10 h-10"/>
         <div className="flex-1">
         <p className="font-extrabold text-3xl text-white">
             WEAR<span className="font-bold text-white text-3xl">ther</span>
@@ -56,9 +59,9 @@ export const Navbar = () => {
           )}
           {(
               <li>
-                <Link to="/upload">
-                <p className=" cursor-pointer px-5 py-2 text-xl font-semibold text-white" onClick={() => setForm(true)}>upload clothing</p>
-                </Link>
+                <button onClick={() => setForm(true)}>
+                    <p className="cursor-pointer px-5 py-2 text-xl font-semibold text-white">upload clothing</p>
+                </button>
               </li>
           )}
           
