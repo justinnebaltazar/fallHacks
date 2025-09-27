@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { OutfitDisplay } from "./OutfitDisplay"
 
 export const WeatherCard = () => {
     /* fetch weather data and display 5 widget cards */
@@ -6,6 +7,7 @@ export const WeatherCard = () => {
     const [loading, setLoading] = useState(true)
     const [latitude, setLatitude] = useState(null)
     const [longitude, setLongitude] = useState(null)
+    const [selectedOutfit, setSelectedOutfit] = useState(null)
 
     const WEATHER_KEY = import.meta.env.VITE_WEATHER_KEY
 
@@ -134,6 +136,7 @@ export const WeatherCard = () => {
                         <div
                             key={i}
                             className="bg-white shadow-md rounded-xl p-4 flex flex-col items-center"
+                            onClick={() => setSelectedOutfit(i + 1)}
                         >
                             <p className="font-bold">{dateStr}</p>
                             <p>{minTemp}°C – {maxTemp}°C</p>
@@ -143,6 +146,9 @@ export const WeatherCard = () => {
                     );
                 })}
             </div>
+                {selectedOutfit && (
+                    <OutfitDisplay selectedOutfit={selectedOutfit} />
+                )}
         </div>
         
     );
