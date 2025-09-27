@@ -17,7 +17,6 @@ function App() {
           {/* home page */}
           <Route path="/" element={
             <>
-              <Navbar/>
               <Home/>
             </>
           }>
