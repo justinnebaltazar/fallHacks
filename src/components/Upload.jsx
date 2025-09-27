@@ -92,7 +92,7 @@ export const Upload = ({trigger, onClose, onDone}) => {
                             </select>
 
                             <button className="cursor-pointer justify-between items-center unset bg-[#274472] text-[#D9D9D9] p-3 rounded-lg">Submit</button>
-                            <button type="button" className="cursor-pointer justify-between items-center unset bg-[#41729F] text-[#D9D9D9] p-3 rounded-lg">Cancel</button>
+                            <button onClick={onClose} type="button" className="cursor-pointer justify-between items-center unset bg-[#41729F] text-[#D9D9D9] p-3 rounded-lg">Cancel</button>
                         </form>
                     </div>
                 </div>
