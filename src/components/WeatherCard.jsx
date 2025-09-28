@@ -175,44 +175,46 @@ export const WeatherCard = () => {
     }
 
     return (
-        <div className="w-screen h-1/2 p-4 justify-center items-center bg-[#274472]" >
-            <h2 className="text-xl font-bold text-center mb-4 text-white"> Weather Forecast for {city} </h2>
+        <div className="w-screen h-screen bg-[#274472]">
+            <div className="w-screen h-1/2 p-4 justify-center items-center bg-[#274472]" >
+                <h2 className="text-xl font-bold text-center mb-4 text-white"> Weather Forecast for {city} </h2>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-                {forecast.map((day, i) => {
-                    if (!day.displayDate) return null; // skip invalid entries
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                    {forecast.map((day, i) => {
+                        if (!day.displayDate) return null; // skip invalid entries
 
-                    const { year, month, day: dayNum } = day.displayDate;
-                    const dateStr = new Date(year, month - 1, dayNum).toDateString();
+                        const { year, month, day: dayNum } = day.displayDate;
+                        const dateStr = new Date(year, month - 1, dayNum).toDateString();
 
-                    const minTemp = day.minTemperature?.degrees ?? "--";
-                    const maxTemp = day.maxTemperature?.degrees ?? "--";
+                        const minTemp = day.minTemperature?.degrees ?? "--";
+                        const maxTemp = day.maxTemperature?.degrees ?? "--";
 
-                    const icon = day.daytimeForecast?.weatherCondition?.type;
-                    const emoji = iconMap[icon] || "❓";
+                        const icon = day.daytimeForecast?.weatherCondition?.type;
+                        const emoji = iconMap[icon] || "❓";
 
-                    // extract text from description object
-                    const descriptionObj = day.daytimeForecast?.weatherCondition?.description;
-                    const description = typeof descriptionObj === 'object' && descriptionObj?.text 
-                        ? descriptionObj.text 
-                        : descriptionObj || "No data";
+                        // extract text from description object
+                        const descriptionObj = day.daytimeForecast?.weatherCondition?.description;
+                        const description = typeof descriptionObj === 'object' && descriptionObj?.text 
+                            ? descriptionObj.text 
+                            : descriptionObj || "No data";
 
-                    return (
-                        <div
-                            key={i}
-                            className="bg-white shadow-md rounded-xl p-4 flex flex-col items-center"
-                            onClick={() => handleCardClick(day)}
-                        >
-                            <p className="font-bold">{dateStr}</p>
-                            <p>{minTemp}°C – {maxTemp}°C</p>
-                            <p className="capitalize">{description}</p>
-                            <span className="text-4xl">{emoji}</span>
-                        </div>
-                    );
-                })}
+                        return (
+                            <div
+                                key={i}
+                                className="bg-white shadow-md rounded-xl p-4 flex flex-col items-center"
+                                onClick={() => handleCardClick(day)}
+                            >
+                                <p className="font-bold">{dateStr}</p>
+                                <p>{minTemp}°C – {maxTemp}°C</p>
+                                <p className="capitalize">{description}</p>
+                                <span className="text-4xl">{emoji}</span>
+                            </div>
+                        );
+                    })}
+                </div>
+                    {selectedOutfit && <OutfitDisplay outfit={selectedOutfit} />}
             </div>
-                {selectedOutfit && <OutfitDisplay outfit={selectedOutfit} />}
         </div>
-        
+            
     );
 }

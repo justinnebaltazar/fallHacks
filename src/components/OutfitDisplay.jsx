@@ -33,8 +33,8 @@ export const OutfitDisplay = ({ outfit }) => {
           Loading image...
         </div>
       )}
-      <p className="font-semibold mt-2">{outfit.clothing_type}</p>
-      <p className="text-gray-600">{outfit.dress_code}</p>
+      <p className="font-semibold mt-2 text-white">{outfit.clothing_type}</p>
+      <p className="text-white">{outfit.dress_code}</p>
     </div>
   );
 };
