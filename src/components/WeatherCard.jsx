@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { OutfitDisplay } from "./OutfitDisplay"
+import supabase from "../helper/supabaseClient"
 
 export const WeatherCard = () => {
     /* fetch weather data and display 5 widget cards */
@@ -104,14 +105,78 @@ export const WeatherCard = () => {
     }
     }, [latitude, longitude])
 
+    const pickOutfitCriteria = (day) => {
+        console.log("picking outfit criteria")
+        const maxTemp = day.maxTemperature?.degrees ?? 20;
+        const description =
+        typeof day.daytimeForecast?.weatherCondition?.description === "object"
+            ? day.daytimeForecast?.weatherCondition?.description.text
+            : day.daytimeForecast?.weatherCondition?.description ?? "";
+
+        // Default criteria
+        let criteria = { clothing_type: "top", dress_code: "casual" };
+
+        if (maxTemp < 15) {
+            criteria.sleeve_length = "long"; // sweater
+        } else if (maxTemp >= 15 && maxTemp < 22) {
+            criteria.sleeve_length = "short"; // t-shirt
+        } else {
+            criteria.sleeve_length = "short";
+        }
+
+        if (description.toLowerCase().includes("rain")) {
+            criteria.clothing_type = "outerwear";
+            criteria.pants_length = "long";
+        }
+        if (description.toLowerCase().includes("snow")) {
+            criteria.clothing_type = "outerwear";
+            criteria.pants_length = "long";
+        }
+        console.log("returning criteria:", criteria)
+        return criteria;
+    };
+
+    const handleCardClick = async (day) => {
+        console.log("Weather Card clicked");
+        const criteria = pickOutfitCriteria(day);
+
+        // Build Supabase query dynamically
+        let query = supabase.from("outfit").select("*");
+
+        // required filters
+        query = query.eq("clothing_type", criteria.clothing_type)
+                    .eq("dress_code", criteria.dress_code);
+
+        // optional filters
+        if (criteria.sleeve_length) query = query.eq("sleeve_length", criteria.sleeve_length);
+        if (criteria.pants_length) query = query.eq("pants_length", criteria.pants_length);
+
+        const { data: outfitData, error } = await query;
+
+        if (error) {
+            console.error("Error fetching outfit:", error);
+            return;
+        }
+
+        console.log("checking for outfit data", outfitData);
+
+        if (outfitData && outfitData.length > 0) {
+            const randomIndex = Math.floor(Math.random() * outfitData.length);
+            const chosenOutfit = outfitData[randomIndex];
+            setSelectedOutfit(chosenOutfit);
+            console.log("the selected outfit", chosenOutfit);
+        }
+    };
+
+
 
     if (loading) {
         return <div className="text-center">Loading weather...</div>
     }
 
     return (
-        <div className="w-screen h-1/2 p-4 justify-center items-center" >
-            <h2 className="text-xl font-bold text-center mb-4"> Weather Forecast for {city} </h2>
+        <div className="w-screen h-1/2 p-4 justify-center items-center bg-[#274472]" >
+            <h2 className="text-xl font-bold text-center mb-4 text-white"> Weather Forecast for {city} </h2>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
                 {forecast.map((day, i) => {
@@ -136,7 +201,7 @@ export const WeatherCard = () => {
                         <div
                             key={i}
                             className="bg-white shadow-md rounded-xl p-4 flex flex-col items-center"
-                            onClick={() => setSelectedOutfit(i + 1)}
+                            onClick={() => handleCardClick(day)}
                         >
                             <p className="font-bold">{dateStr}</p>
                             <p>{minTemp}°C – {maxTemp}°C</p>
@@ -146,9 +211,7 @@ export const WeatherCard = () => {
                     );
                 })}
             </div>
-                {selectedOutfit && (
-                    <OutfitDisplay selectedOutfit={selectedOutfit} />
-                )}
+                {selectedOutfit && <OutfitDisplay outfit={selectedOutfit} />}
         </div>
         
     );
