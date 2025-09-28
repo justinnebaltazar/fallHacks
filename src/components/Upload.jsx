@@ -62,7 +62,7 @@ export const Upload = ({trigger, onClose, onDone}) => {
                     <div>
                         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 
-                            <select value={dresscode} className="justify-between items-center unset bg-[#D9D9D9] text-[#274472] p-3 rounded-lg">
+                            <select value={dresscode} className="justify-between items-center unset bg-[#D9D9D9] text-white p-3 rounded-lg">
                                 <option value="" selected>Dress Code</option>
                                 <option value="casual">casual</option>
                                 <option value="semi-casual">semi-casual</option>
