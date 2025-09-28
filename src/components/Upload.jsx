@@ -4,10 +4,10 @@ import { useDropzone } from 'react-dropzone'
 
 export const Upload = ({trigger, onClose, onDone}) => {
     const [files, setFiles] = useState([])
-    const [type, setType] = useState("")
-    const [dresscode, setDresscode] = useState("")
-    const [pants, setPants] = useState("")
-    const [sleeves, setSleeves] = useState("")
+    const [type, setType] = useState("Clothin Type")
+    const [dresscode, setDresscode] = useState("Dress Code")
+    const [pants, setPants] = useState("Pants Length")
+    const [sleeves, setSleeves] = useState("Sleeve Length")
 
     const {getRootProps, getInputProps} = 
     useDropzone({
@@ -62,29 +62,29 @@ export const Upload = ({trigger, onClose, onDone}) => {
                     <div>
                         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 
-                            <select value={dresscode} className="justify-between items-center unset bg-[#D9D9D9] text-[#274472] p-3 rounded-lg">
-                                <option value="" selected>Dress Code</option>
+                            <select value={dresscode} onChange={(e) => setDresscode(e.target.event)} className="justify-between items-center unset bg-[#D9D9D9] text-[#274472] p-3 rounded-lg">
+                                <option value="" selected>select</option>
                                 <option value="casual">casual</option>
                                 <option value="semi-casual">semi-casual</option>
                                 <option value="formal">formal</option>
                             </select>
 
-                            <select value={type} className="justify-between items-center unset bg-[#D9D9D9] text-[#274472] p-3 rounded-lg">
-                                <option value="" selected>Clothing Type</option>
+                            <select value={type} onChange={(e) => setType(e.target.event)} className="justify-between items-center unset bg-[#D9D9D9] text-[#274472] p-3 rounded-lg">
+                                <option value="" selected>select</option>
                                 <option value="top">top</option>
                                 <option value="pants">pants</option>
                                 <option value="shoes">shoes</option>
                             </select>
 
-                            <select value={pants} className="justify-between items-center unset bg-[#D9D9D9] text-[#274472] p-3 rounded-lg">
-                                <option value="" selected>Pants Length</option>
+                            <select value={pants} onChange={(e) => setPants(e.target.event)} className="justify-between items-center unset bg-[#D9D9D9] text-[#274472] p-3 rounded-lg">
+                                <option value="" selected>select</option>
                                 <option value="ankle">ankle length</option>
                                 <option value="knee-length">knee length</option>
                                 <option value="shorts">shorts</option>
                             </select>
 
-                            <select value={sleeves} className="justify-between items-center unset bg-[#D9D9D9] text-[#274472] p-3 rounded-lg">
-                                <option value="" selected>Sleeve Length</option>
+                            <select value={sleeves} onChange={(e) => setSleeves(e.target.event)} className="justify-between items-center unset bg-[#D9D9D9] text-[#274472] p-3 rounded-lg">
+                                <option value="" selected>select</option>
                                 <option value="tank-top">tank-top</option>
                                 <option value="t-shirt">t-shirt</option>
                                 <option value="elbow-length">elbow-length</option>
