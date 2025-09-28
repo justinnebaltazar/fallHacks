@@ -3,7 +3,6 @@ import closet from "../assets/closet.svg";
 import clothes from "../assets/clothes.svg";
 import weather from "../assets/weather.svg";
 import arrow from "../assets/arrow.svg";
-import {Navbar} from "./Navbar";
 
 
 export const About = () => {
@@ -11,9 +10,9 @@ export const About = () => {
     <div
       className="h-screen w-full bg-no-repeat bg-cover bg-center overflow-hidden"
       style={{ backgroundImage: `url(${background})` }}
+      id="about"
     >
 
-   <Navbar />
    <div className="flex flex-col items-center gap-y-20 p-10">
 
       <h1 className="text-4xl text-white font-extrabold mt-10">

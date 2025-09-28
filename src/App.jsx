@@ -18,12 +18,6 @@ function App() {
           <Route path="/" element={
             <>
               <Home/>
-            </>
-          }>
-          </Route>
-          {/* about page */}
-          <Route path="/about" element={
-            <>
               <About/>
             </>
           }>
