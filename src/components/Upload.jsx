@@ -2,12 +2,23 @@ import { useState, useEffect } from "react";
 import supabase from "../helper/supabaseClient";
 import { useDropzone } from 'react-dropzone'
 
-export const Upload = ({trigger, onClose, onDone}) => {
+export const Upload = ({trigger, onClose}) => {
     const [files, setFiles] = useState([])
     const [type, setType] = useState("Clothin Type")
     const [dresscode, setDresscode] = useState("Dress Code")
     const [pants, setPants] = useState("Pants Length")
     const [sleeves, setSleeves] = useState("Sleeve Length")
+    const [user, setUser] = useState([])
+    const [outfit, setOutfit] = useState([])
+
+    useEffect(() => {
+        const fetchOutfit = async () => {
+            if (!selectedOutfit) return;
+            const { data, error } = await supabase
+            .from("outfit")
+            .select("*")
+        }
+    })
 
     const {getRootProps, getInputProps} = 
     useDropzone({
@@ -61,9 +72,7 @@ export const Upload = ({trigger, onClose, onDone}) => {
                     {/* form */}
                     <div>
                         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-
-                            <select value={dresscode} className="justify-between items-center unset bg-[#D9D9D9] text-white p-3 rounded-lg">
-                                <option value="" selected>Dress Code</option>
+                            
                             <select value={dresscode} onChange={(e) => setDresscode(e.target.event)} className="justify-between items-center unset bg-[#D9D9D9] text-[#274472] p-3 rounded-lg">
                                 <option value="" selected>select</option>
                                 <option value="casual">casual</option>
@@ -93,7 +102,7 @@ export const Upload = ({trigger, onClose, onDone}) => {
                                 <option value="long-sleeve">long sleeve</option>
                             </select>
 
-                            <button className="cursor-pointer justify-between items-center unset bg-[#274472] text-[#D9D9D9] p-3 rounded-lg">Submit</button>
+                            <button onClick={() => handleSubmit} className="cursor-pointer justify-between items-center unset bg-[#274472] text-[#D9D9D9] p-3 rounded-lg">Submit</button>
                             <button onClick={onClose} type="button" className="cursor-pointer justify-between items-center unset bg-[#41729F] text-[#D9D9D9] p-3 rounded-lg">Cancel</button>
                         </form>
                     </div>
