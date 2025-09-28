@@ -10,6 +10,7 @@ export const About = () => {
     <div
       className="h-screen w-full bg-no-repeat bg-cover bg-center overflow-hidden"
       style={{ backgroundImage: `url(${background})` }}
+      id="about"
     >
 
    <div className="flex flex-col items-center gap-y-20 p-10">

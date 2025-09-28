@@ -52,9 +52,7 @@ export const Navbar = () => {
 
 {(
               <li>
-                <Link to="/about" className=" px-5 py-2 text-xl font-semibold text-white">
-                  about
-                </Link>
+                <a href="#about" className="cursor-pointer px-5 py-2 text-xl font-semibold text-white">about</a>
               </li>
           )}
           {(
